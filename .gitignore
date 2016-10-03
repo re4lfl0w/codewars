@@ -1,4 +1,6 @@
-# Created by https://www.gitignore.io/api/python
+
+access_key.py
+.ipynb_checkpoints
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
