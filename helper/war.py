@@ -3,6 +3,9 @@ import logging
 import logging.config
 
 import mechanicalsoup
+from pygments import highlight
+from pygments.formatters.html import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
 
 from conf.access_key import access_key
 from conf.settings import TEST_LOGGING
@@ -46,3 +49,9 @@ class Kata(object):
     def get_description_in_code_challenge(self, challenge_url, key_='description'):
         self.set_code_challenge(challenge_url)
         return self.challenge_json[key_]
+
+    @dump_func_name(logger)
+    def get_hilighted_data(self, data, lexer='html', formatter_style='default'):
+        lexer = get_lexer_by_name(lexer)
+        formatter = HtmlFormatter(style=formatter_style, linenos=False, full=True)
+        return highlight(data, lexer, formatter)
